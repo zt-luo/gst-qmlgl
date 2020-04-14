@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(gstqmlgl LANGUAGES CXX)
 
+set(CMAKE_AUTOMOC ON)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -45,13 +46,15 @@ link_libraries(
     ${GST_LDFLAGS} ${GST_VIDEO_LDFLAGS} ${GST_GL_LDFLAGS}
     )
 
-qt5_wrap_cpp(moc_list
+set(src_list
     "gstqsgtexture.h"
+    "gstqtgl.h"
+    "gstqtglutility.h"
+    "gstqtsink.h"
+    "gstqtsrc.h"
     "qtwindow.h"
     "qtitem.h"
-    )
 
-set(src_list
     "gstplugin.cc"
     "gstqtglutility.cc"
     "gstqsgtexture.cc"
@@ -77,6 +80,6 @@ message(STATUS "useing MSVC")
 link_libraries(opengl32.lib)
 endif()
 
-add_library(${PROJECT_NAME} SHARED ${src_list} ${moc_list})
-add_library(${PROJECT_NAME}_static STATIC ${src_list} ${moc_list})
+add_library(${PROJECT_NAME} SHARED ${src_list})
+add_library(${PROJECT_NAME}_static STATIC ${src_list})
 target_compile_definitions(${PROJECT_NAME}_static PRIVATE STATIC_QMLGL_PLUGIN)
