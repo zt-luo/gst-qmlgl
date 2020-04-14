@@ -26,7 +26,10 @@
 #include "gstqtsrc.h"
 #include <QtQml/QQmlApplicationEngine>
 
-static gboolean
+#ifndef STATIC_QMLGL_PLUGIN
+static 
+#endif
+gboolean
 plugin_init (GstPlugin * plugin)
 {
   if (!gst_element_register (plugin, "qmlglsink",
