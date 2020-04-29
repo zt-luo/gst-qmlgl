@@ -82,4 +82,3 @@ endif()
 
 add_library(${PROJECT_NAME} SHARED ${src_list})
 add_library(${PROJECT_NAME}_static STATIC ${src_list})
-target_compile_definitions(${PROJECT_NAME}_static PRIVATE STATIC_QMLGL_PLUGIN)

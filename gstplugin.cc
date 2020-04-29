@@ -26,10 +26,7 @@
 #include "gstqtsrc.h"
 #include <QtQml/QQmlApplicationEngine>
 
-#ifndef STATIC_QMLGL_PLUGIN
-static 
-#endif
-gboolean
+static gboolean
 plugin_init (GstPlugin * plugin)
 {
   if (!gst_element_register (plugin, "qmlglsink",
@@ -45,6 +42,11 @@ plugin_init (GstPlugin * plugin)
   qmlRegisterType<QtGLVideoItem> ("org.freedesktop.gstreamer.GLVideoItem", 1, 0, "GstGLVideoItem");
 
   return TRUE;
+}
+
+gboolean gst_qmlgl_plugin_init (GstPlugin * plugin)
+{
+  return plugin_init (plugin);
 }
 
 #ifndef GST_PACKAGE_NAME
